@@ -8,6 +8,12 @@
     },
     {
       "path": "./apps/ms_product"
+    },
+    {
+      "path": "./ms_gateway-e2e"
+    },
+    {
+      "path": "./ms_gateway"
     }
   ]
 }

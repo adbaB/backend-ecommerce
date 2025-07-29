@@ -1,2 +1,4 @@
-packages: 
-  - "apps/*"
+packages:
+  - 'apps/*'
+  - 'ms_gateway'
+  - 'ms_gateway-e2e'
