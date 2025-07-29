@@ -10,10 +10,10 @@
       "path": "./apps/ms_product"
     },
     {
-      "path": "./ms_gateway-e2e"
+      "path": "./apps/ms_gateway-e2e"
     },
     {
-      "path": "./ms_gateway"
+      "path": "./apps/ms_gateway"
     }
   ]
 }
