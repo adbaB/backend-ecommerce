@@ -1,10 +1,10 @@
+import { BackendDateModule } from '@libs/date';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true })],
+  imports: [ConfigModule.forRoot({ isGlobal: true }), BackendDateModule],
   controllers: [AppController],
   providers: [AppService],
 })

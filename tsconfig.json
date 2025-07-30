@@ -14,6 +14,9 @@
     },
     {
       "path": "./apps/ms_gateway"
+    },
+    {
+      "path": "./libs/date"
     }
   ]
 }
