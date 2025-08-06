@@ -17,6 +17,12 @@
     },
     {
       "path": "./libs/date"
+    },
+    {
+      "path": "./apps/ms_categories-e2e"
+    },
+    {
+      "path": "./apps/ms_categories"
     }
   ]
 }

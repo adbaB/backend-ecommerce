@@ -52,7 +52,11 @@
       "options": {
         "targetName": "test"
       },
-      "exclude": ["apps/ms_product-e2e/**/*", "apps/ms_gateway-e2e/**/*"]
+      "exclude": [
+        "apps/ms_product-e2e/**/*",
+        "apps/ms_gateway-e2e/**/*",
+        "apps/ms_categories-e2e/**/*"
+      ]
     }
   ],
   "targetDefaults": {

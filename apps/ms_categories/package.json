@@ -1,0 +1,50 @@
+{
+  "name": "@backend/ms_categories",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "targets": {
+      "build": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "webpack-cli build",
+          "args": [
+            "--node-env=production"
+          ]
+        },
+        "configurations": {
+          "development": {
+            "args": [
+              "--node-env=development"
+            ]
+          }
+        }
+      },
+      "serve": {
+        "continuous": true,
+        "executor": "@nx/js:node",
+        "defaultConfiguration": "development",
+        "dependsOn": [
+          "build"
+        ],
+        "options": {
+          "buildTarget": "@backend/ms_categories:build",
+          "runBuildTargetDependencies": false
+        },
+        "configurations": {
+          "development": {
+            "buildTarget": "@backend/ms_categories:build:development"
+          },
+          "production": {
+            "buildTarget": "@backend/ms_categories:build:production"
+          }
+        }
+      },
+      "test": {
+        "options": {
+          "passWithNoTests": true
+        }
+      }
+    }
+  }
+}

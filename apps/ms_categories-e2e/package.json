@@ -1,0 +1,26 @@
+{
+  "name": "@backend/ms_categories-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@backend/ms_categories"
+    ],
+    "targets": {
+      "e2e": {
+        "executor": "@nx/jest:jest",
+        "outputs": [
+          "{projectRoot}/test-output/jest/coverage"
+        ],
+        "options": {
+          "jestConfig": "apps/ms_categories-e2e/jest.config.ts",
+          "passWithNoTests": true
+        },
+        "dependsOn": [
+          "@backend/ms_categories:build",
+          "@backend/ms_categories:serve"
+        ]
+      }
+    }
+  }
+}
