@@ -9,7 +9,10 @@ export class CategoriesService {
 
   constructor(@InjectRepository(Category) private readonly categoryRepo: Repository<Category>){}
 
-  create(dto:any){
+
+  create(dto:any):string
+  create(dto:any[]):string
+  {
     return 'created'
   }
 
