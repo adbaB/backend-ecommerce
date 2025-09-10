@@ -13,7 +13,7 @@ import { Category } from "../categories/entities/categories.entity";
     password: configService.get('DB_PASSWORD'),
     database: configService.get('DB_DATABASE'),
     entities: [Category],
-    synchronize: true,
+    synchronize: false,
     autoLoadEntities:true,
   }),
   inject: [ConfigService],

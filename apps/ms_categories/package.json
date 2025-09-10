@@ -44,6 +44,27 @@
         "options": {
           "passWithNoTests": true
         }
+      },
+      "migration:generate": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "typeorm-ts-node-commonjs migration:generate -d src/app/databases/ormconfig.ts src/app/databases/migrations/{args.name}",
+          "cwd": "apps/ms_categories"
+        }
+      },
+      "migration:run": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "typeorm-ts-node-commonjs migration:run -d src/app/databases/ormconfig.ts",
+          "cwd": "apps/ms_categories"
+        }
+      },
+      "migration:revert": {
+        "executor": "nx:run-commands",
+        "options": {
+          "command": "typeorm-ts-node-commonjs migration:revert -d src/app/databases/ormconfig.ts",
+          "cwd": "apps/ms_categories"
+        }
       }
     }
   },
