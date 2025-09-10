@@ -10,10 +10,11 @@ async function bootstrap() {
     {
       transport: Transport.KAFKA,
       options: {
-        client: { brokers: ['localhost:9092'] },
+        client: { brokers: ['localhost:9092'], clientId: 'ms_categories' },
         consumer: { groupId: 'categories-consumer-group' },
         producer:{
-          createPartitioner: Partitioners.DefaultPartitioner
+          createPartitioner: Partitioners.DefaultPartitioner,
+          allowAutoTopicCreation: true
         }
 
       },

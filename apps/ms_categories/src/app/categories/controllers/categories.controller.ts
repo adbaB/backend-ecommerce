@@ -13,4 +13,9 @@ export class CategoriesController {
     console.log('[categorie-created]: Received new categorie',categorie)
   }
 
+  @MessagePattern('get-categories')
+  getCategories(){
+    return this.categoriesService.find()
+  }
+
 }

@@ -17,7 +17,7 @@ export class CategoriesService {
   }
 
   find(){
-    return []
+    return [{hi:'hi'}]
   }
   findById(id:string){
     return 'product1'

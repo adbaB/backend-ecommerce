@@ -14,11 +14,11 @@ import { AppService } from './app.service';
         transport: Transport.KAFKA,
         options: {
           client: {
+            clientId: 'ms_gateway',
             brokers: ['localhost:9092'],
-            
           },
           producer:{
-            createPartitioner: Partitioners.DefaultPartitioner
+            createPartitioner: Partitioners.DefaultPartitioner,
           }
         },
       },
