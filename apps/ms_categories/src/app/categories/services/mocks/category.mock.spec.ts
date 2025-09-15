@@ -21,3 +21,9 @@ export const mockRepository: Partial<TreeRepository<Category>> = {
   createDescendantsQueryBuilder: jest.fn(),
   createAncestorsQueryBuilder: jest.fn(),
 };
+
+describe('mockRepository', () => {
+  it('should be defined', () => {
+    // No hace nada, solo es una prueba vacía
+  });
+});
