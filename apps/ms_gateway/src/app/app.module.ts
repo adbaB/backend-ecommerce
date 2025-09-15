@@ -2,8 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
 import { Partitioners } from 'kafkajs';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { CategoriesController } from './categories/categories.controller';
 
 @Module({
   imports: [
@@ -24,7 +23,7 @@ import { AppService } from './app.service';
       },
     ]),
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [CategoriesController],
+  providers: [],
 })
 export class AppModule {}
