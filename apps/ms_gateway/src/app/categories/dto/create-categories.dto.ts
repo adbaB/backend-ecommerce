@@ -9,8 +9,9 @@ export class CreateCategoriesDto {
   @IsAlphanumeric('es-ES', {message:'slug must be alphanumeric'})
   slug!: string;
 
+  @IsOptional({message:'color is optional'})
   @IsHexColor({message:'color must be a valid hex color'})
-  color!: string;
+  color?: string;
   
 
   @IsOptional({message:'parentUuid is optional'})

@@ -33,6 +33,34 @@ export class CategoriesService {
           timestamp: new Date(),
         });
       }
+      
+      const existingCategory = await this.categoryRepo.findOne({where:{ name }});
+
+      if (existingCategory) {
+        throw new RpcException({
+          status: 'error',
+          error: {
+            code: HttpStatus.CONFLICT,
+            message: 'Category already exists',
+            details: `Category with name ${name} already exists`,
+          },
+          timestamp: new Date(),
+        });
+      }   
+
+      const existingSlug = await this.categoryRepo.findOne({where:{ slug }});
+      if (existingSlug) {
+        throw new RpcException({
+          status: 'error',
+          error: {
+            code: HttpStatus.CONFLICT,
+            message: 'Slug already exists',
+            details: `Category with slug ${slug} already exists`,
+          },
+          timestamp: new Date(),
+        });
+      }
+
       if (parentUuid) {
         parentCategory = await this.categoryRepo.findOne({
           where: { uuid: parentUuid },
@@ -41,7 +69,7 @@ export class CategoriesService {
           throw new RpcException({
             status: 'error',
             error: {
-              code: HttpStatus.BAD_REQUEST,
+              code: HttpStatus.NOT_FOUND,
               message: 'Parent category not found',
               details: `Parent category with UUID ${parentUuid} not found`,
             },
@@ -60,7 +88,7 @@ export class CategoriesService {
           });
         }
       }
-      console.log('hi')
+
       const category = this.categoryRepo.create({
         name,
         slug,
@@ -76,6 +104,9 @@ export class CategoriesService {
         timestamp: new Date(),
       };
     } catch (error) {
+      if(error instanceof RpcException) {
+        throw error;
+      }
       throw new RpcException({
         status: 'error',
         error: {
@@ -100,5 +131,9 @@ export class CategoriesService {
 
   update(id: string, dto: Partial<any>) {
     return 'categorie updated';
+  }
+
+  remove(id: string) {
+    return 'categorie removed';
   }
 }

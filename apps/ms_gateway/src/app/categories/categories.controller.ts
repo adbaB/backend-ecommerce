@@ -5,13 +5,18 @@ import {
   Inject,
   OnModuleInit,
   Post,
+  Res,
   UnprocessableEntityException,
+  UseFilters
 } from '@nestjs/common';
 import { ClientKafka } from '@nestjs/microservices';
+import type { Response } from 'express';
 import { catchError, firstValueFrom } from 'rxjs';
+import { ExceptionFilter } from '../filters/rpc.exception';
 import { CreateCategoriesDto } from './dto/create-categories.dto';
 
 @Controller('categories')
+@UseFilters(new ExceptionFilter())
 export class CategoriesController implements OnModuleInit {
   constructor(
     
@@ -60,20 +65,11 @@ export class CategoriesController implements OnModuleInit {
    * @param createCategoryDto - The create category DTO.
    * @returns A promise that resolves to the first value from the observable.
    */
-  async createCategory(@Body() createCategoryDto: CreateCategoriesDto) {
+  async createCategory(@Body() createCategoryDto: CreateCategoriesDto,@Res() res: Response) {
     return firstValueFrom(
       this.kafkaClient
         .send('categories.create', createCategoryDto)
-        .pipe(
-          catchError((error: unknown) => {
-             // Catch any errors that occur and throw an UnprocessableEntityException
-             if (error instanceof Error) {
-              throw new UnprocessableEntityException(error.message);
-            } else {
-              throw error;
-            }
-          })
-        )
+        .pipe()
     );
   }
 }

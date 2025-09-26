@@ -13,6 +13,7 @@
     "axios": "^1.6.0",
     "class-transformer": "0.5.1",
     "class-validator": "0.14.2",
+    "express": "^4.21.2",
     "kafkajs": "2.2.4",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0"
@@ -23,6 +24,7 @@
     "@nestjs/testing": "^11.0.0",
     "@nx/eslint": "21.3.9",
     "@nx/eslint-plugin": "21.3.9",
+    "@nx/express": "21.5.3",
     "@nx/jest": "21.3.9",
     "@nx/js": "21.3.9",
     "@nx/nest": "21.3.9",
@@ -34,6 +36,7 @@
     "@swc/core": "~1.5.7",
     "@swc/helpers": "~0.5.11",
     "@swc/jest": "~0.2.38",
+    "@types/express": "5.0.3",
     "@types/jest": "^30.0.0",
     "@types/node": "~18.16.9",
     "eslint": "^9.8.0",
