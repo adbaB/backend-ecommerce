@@ -202,4 +202,87 @@ describe('CategoriesService', () => {
     });
   });
 
+  describe('find', () => {
+
+    let service: CategoriesService;
+  
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+    beforeAll(async () => {
+    
+      const app = await Test.createTestingModule({
+        providers: [
+          CategoriesService,
+          {
+            provide: getRepositoryToken(Category),
+            useValue: mockRepository,
+          },
+        ],
+      }).compile();
+  
+      service = app.get<CategoriesService>(CategoriesService);
+    });
+  
+  
+  
+    it('should return an array of categories', async () => {
+      const categories = [
+        { uuid: 'UUID', name: 'Category 1', slug: 'category-1', color: '#FF0000' },
+        { uuid: 'UUID', name: 'Category 2', slug: 'category-2', color: '#00FF00' },
+      ];
+      jest.spyOn(service['categoryRepo'], 'find').mockResolvedValue(categories);
+      const result = await service.find();
+      expect(result).toEqual(categories);
+    });
+  
+    it('should return an empty array if no categories found', async () => {
+      jest.spyOn(service['categoryRepo'], 'find').mockResolvedValue([]);
+      const result = await service.find();
+      expect(result).toEqual([]);
+    });
+  });
+  
+  
+  describe('findOne', () => {
+  
+    let service: CategoriesService;
+  
+    beforeEach(() => {
+      jest.clearAllMocks();
+    });
+    beforeAll(async () => {
+    
+      const app = await Test.createTestingModule({
+        providers: [
+          CategoriesService,
+          {
+            provide: getRepositoryToken(Category),
+            useValue: mockRepository,
+          },
+        ],
+      }).compile();
+  
+      service = app.get<CategoriesService>(CategoriesService);
+    });
+  
+  
+  
+    it('should return a Object of categories', async () => {
+      const category =    { uuid: 'UUID', name: 'Category 1', slug: 'category-1', color: '#FF0000' }
+        
+      ;
+      jest.spyOn(service['categoryRepo'], 'findOne').mockResolvedValue(category);
+      const result = await service.findById('UUID');
+      expect(result).toEqual(category);
+    });
+  
+    it('should return null if category not found', async () => {
+      jest.spyOn(service['categoryRepo'], 'findOne').mockResolvedValue(null);
+      const result = await service.findById('non-existing-uuid');
+      expect(result).toBeNull();
+    });
+  });
+
 });
+

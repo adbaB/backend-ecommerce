@@ -123,17 +123,31 @@ export class CategoriesService {
   }
 
   find() {
-    return [{ hi: 'hi' }];
+    return this.categoryRepo.find({relations: ['children']});
   }
   findById(id: string) {
-    return 'product1';
+    return this.categoryRepo.findOne({where:{ uuid:id},relations: ['children']})
   }
 
-  update(id: string, dto: Partial<any>) {
-    return 'categorie updated';
+  async update(id: string, dto: Partial<CreateCategorieDTO>):Promise<void> {
+    const updatedCategorie =  await this.categoryRepo.preload({ uuid: id, ...dto });
+
+    if (!updatedCategorie) {
+      throw new RpcException({
+        status: 'error',
+        error: {
+          code: HttpStatus.NOT_FOUND,
+          message: 'Category not found',
+          details: `Category with id ${id} not found`,
+        },
+        timestamp: new Date(),
+      });
+    }
+
+  this.categoryRepo.update(id,updatedCategorie);
   }
 
-  remove(id: string) {
-    return 'categorie removed';
+  async remove(id: string):Promise<void> {
+     this.categoryRepo.delete({uuid: id})
   }
 }

@@ -18,4 +18,19 @@ export class CategoriesController {
   getCategories() {
     return this.categoriesService.find();
   }
+
+  @MessagePattern('categories.get.one')
+  getCategory(@Payload() payload: {id:string}):Promise<Category | null> {
+    return this.categoriesService.findById(payload.id)
+  }
+
+  @MessagePattern('categories.update')
+  updateCategory(@Payload() payload: {id:string, updateData:Partial<CreateCategorieDTO>}):Promise<void> {
+    return this.categoriesService.update(payload.id, payload.updateData)
+  }
+
+  @MessagePattern('categories.remove')
+  deleteCategory(@Payload() payload: {id:string}):Promise<void> {
+    return this.categoriesService.remove(payload.id)
+  }
 }
